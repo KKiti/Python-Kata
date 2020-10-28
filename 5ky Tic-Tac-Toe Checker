@@ -1,0 +1,30 @@
+#Given a Tic Tac Toe board in the form of a 3d array
+#where 0 is an empty square, 1 is an O, 2 is an X
+#return -1 if game isn't complete, 0 for a draw
+#2 if X wins, 1 if O wins
+
+def is_solved(board):
+    r=range(0,3)
+    #check for vertical
+    for i in r:
+        if board[i][0]==board[i][1]==board[i][2]!=0:
+            return board[i][0]
+        
+    #check for horizontal
+    for j in r:
+        if board[0][j]==board[1][j]==board[2][j]!=0:
+            return board[0][j]
+    
+    #check for diagonal
+    if board[0][0]==board[1][1]==board[2][2]!=0:
+        return board[0][0]
+    elif board[2][0]==board[1][1]==board[0][2]!=0:
+        return board[2][0]
+    
+    #check for empty spots
+    for i in r:
+        for j in r:
+            if board[i][j]==0:
+                return -1
+    #return a draw
+    return 0 
