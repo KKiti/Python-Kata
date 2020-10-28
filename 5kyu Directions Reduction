@@ -1,0 +1,14 @@
+# The directions were "NORTH", "SOUTH", "WEST", "EAST". Clearly "NORTH" and "SOUTH" are opposite, "WEST" and "EAST" too.
+# Going to one direction and coming back the opposite direction right away is a needless effort. 
+# Reduce directions to most basic form.
+
+def dirReduc(arr):
+    
+    newDir= ' '.join(arr)
+    newDir= newDir.replace("NORTH SOUTH", '').replace("SOUTH NORTH", '').replace("EAST WEST", '').replace("WEST EAST", '')
+    
+    #reformat as string
+    newDir= newDir.split()
+    
+    #recursive function until the length stagnates
+    return dirReduc(newDir) if len(newDir)<len(arr) else newDir
