@@ -1,0 +1,35 @@
+#Given a number, say prod (for product), we search two Fibonacci numbers F(n) and F(n+1) verifying
+#F(n) * F(n+1) = prod.
+#return triple (F(n), F(n+1), True) if possible
+#otherwise return triple of smallest F(n), F(n+1) to show it is impossible
+
+import math
+def productFib(prod):
+    
+    startNum=math.sqrt(prod)
+    
+    fibSeq=[0,1]
+    for num in range(1,prod+1):
+        nextNum=fibSeq[num]+fibSeq[num-1]
+        fibSeq.append(nextNum)
+        if prod>5 and fibSeq[num-1]>startNum:
+            break;
+
+    if prod<5:  
+        for i in range(5):
+            fibMult=fibSeq[i]*fibSeq[i+1]
+            if (fibMult==prod):
+                return [fibSeq[i], fibSeq[i+1], True]
+            elif (fibMult>prod):
+                return [fibSeq[i], fibSeq[i+1], False]
+        
+    for i in range(prod):
+        if fibSeq[i]< startNum:
+            pass
+        else:
+            fibMult=fibSeq[i-1]*fibSeq[i]
+            if (fibMult==prod):
+                return [fibSeq[i-1], fibSeq[i], True]
+            elif (fibMult>prod):
+                return [fibSeq[i-1], fibSeq[i], False]
+
