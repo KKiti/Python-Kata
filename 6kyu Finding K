@@ -1,0 +1,27 @@
+#Given an array arr, find the maximal value of k such a[i] mod k = a[j] mod k for all valid values of i and j.
+#If it's impossible to find such number (there's an infinite number of ks), return -1 instead.
+
+
+from math import gcd
+
+def finding_k(arr):
+    a=sorted(arr)
+    k=[]
+    g=[]
+
+    for i in range(len(a)-1):
+        b=a[i+1]-a[i]
+        if b!=0:
+            k.append(b)
+            
+    if k==[]: return -1
+            
+    for i in k:
+        for j in k:
+            r=gcd(i,j)
+            if r==1:
+                return 1
+            else:
+                g.append(r)       
+
+    return min(g)
