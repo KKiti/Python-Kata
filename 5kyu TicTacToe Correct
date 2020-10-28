@@ -1,0 +1,58 @@
+#Input: a 9-character string describing the playing field, the "_" symbol indicates an empty cell. 
+#It is guaranteed that the string contains only the characters "X", "0", "_".
+#Output: True if this situation can occur during a fair game according to the rules and False otherwise.
+
+from collections import Counter
+
+def is_it_possible(field):
+    #reformat string as list
+    arr=[]
+    for char in field:
+        arr.append(char)
+    
+    #check that either num(x)=num(y) or num(x)=num(y)+1
+    cnt=Counter(arr)
+    if cnt['0']>cnt['X']:
+        return False
+    if cnt['X']>cnt['0']+1:
+        return False
+    
+    
+    xwin=bool(0)
+    owin=bool(0)
+    #check for wins
+    #horizontals:
+    for i in [0,3,6]:
+        #horizontals:
+        if arr[i]==arr[i+1]==arr[i+2]!='_':
+            if arr[i]=='X' and cnt['X']==cnt['0']+1:
+                xwin=True
+            elif arr[i]=='0'and cnt['X']==cnt['0']:
+                owin=True
+            else:
+                return False
+    #verticals:
+    for i in [0,1,2]:
+        if arr[i]==arr[i+3]==arr[i+6]!='_':
+            if arr[i]=='X' and cnt['X']==cnt['0']+1:
+                xwin=True
+            elif arr[i]=='0'and cnt['X']==cnt['0']:
+                owin=True
+            else:
+                return False
+    
+    #diagonals:
+    if arr[0]==arr[4]==arr[8]!='_' or arr[2]==arr[4]==arr[6]!='_':
+            if arr[4]=='X' and cnt['X']!=cnt['0']+1:
+                return False
+            elif arr[4]=='0'and cnt['X']!=cnt['0']:
+                return False
+            else:
+                return True
+    
+    #both sides can't win
+    if xwin and owin:
+        return False
+            
+        
+    return True
