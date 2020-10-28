@@ -1,2 +1,4 @@
 # Python-Kata
-CodeWars Python Kata
+
+My solutions to CodeWars.com Python challenges.
+
