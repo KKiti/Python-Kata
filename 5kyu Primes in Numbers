@@ -1,0 +1,18 @@
+#Given a positive number n > 1 find the prime factor decomposition of n.
+
+def primeFactors(n):
+    factors = ''
+    for i in range(2,n+1):
+        numi=0
+        while (n % i) == 0: 
+            n/=i
+            numi+=1
+                
+        if numi>0:
+            if numi==1:
+                factors+=f"({i})"
+            else:
+                factors+=f"({i}**{numi})"
+                
+        if n==1:
+            return factors
