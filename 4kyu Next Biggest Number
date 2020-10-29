@@ -1,0 +1,32 @@
+#Create a function that takes a positive integer and returns the next bigger number that can be formed by rearranging its digits.
+
+def next_bigger(n):
+    #change int into list of numbers:
+    r=[int(x) for x in str(n)]
+    
+    #check if number can be made bigger:
+    order=sorted(r, reverse=True)
+    if order==r:
+        return -1
+    
+    #working the right, find the first number smaller than the one before it r[-i]>r[-i-1])
+    for i in range(1, len(r)):
+        if r[-i]>r[-i-1]:
+            arr=r[-i-1:]
+            
+            #find next largest number in arr to swap with arr[0]
+            bigger=[]
+            for x in arr:
+                if x>arr[0]:
+                    bigger.append(x)
+            b=min(bigger)
+            pos=arr.index(b)
+            arr[0], arr[pos]= arr[pos], arr[0]
+            
+            #re-arrange arr from smallest to biggest:
+            arr[1:]=sorted(arr[1:])
+            break
+    res=r[0:-i-1]+arr
+
+    #to remake number
+    return int(''.join(map(str,res)))
