@@ -1,0 +1,14 @@
+#A function which returns the perimeter of a rectangle made up of squares
+#The squares increase in size accroding to fibonacci sequence
+
+
+def perimeter(n):
+    fib=fibs(n+1)
+    return 4*sum(x for x in fib)      
+    
+#function which returns fibonacci seq up to n
+def fibs(n):
+    fib = [0, 1]
+    for i in range(2, n+1):
+        fib.append(fib[-1] + fib[-2])
+    return fib
