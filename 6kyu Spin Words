@@ -1,0 +1,20 @@
+#Write a function that takes in a string of one or more words, and returns the same string, but with all five or more letter words reversed.
+#Strings passed in will consist of only letters and spaces. Spaces will be included only when more than one word is present.
+
+def spinWords(s):
+    
+    #split sentence into words
+    l=s.split()
+    newsentence=[]
+    
+    #check each word and add either flipped or normal version to result
+    for word in l:
+        x=len(word)
+        if x>4:
+            newword=word[::-1]
+            newsentence.append(newword)
+        
+        else:
+            newsentence.append(word)        
+            
+    return ' '.join(newsentence)
