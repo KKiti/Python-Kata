@@ -1,0 +1,23 @@
+Given an array, return an array the same length with any odd numbers sorted in ascending order.
+Leave any even numbers at their current index.
+
+def sort_array(a):
+    result=[0]*len(a)
+    odds=[]
+    ind=[]
+    
+    #put all even numbers directly into result
+    #note all odd values and empty indices
+    for i in range(0, len(a)):
+        if (a[i])%2==0:
+            result[i]=a[i]
+        else:
+            odds.append(a[i])
+            ind.append(i)
+    
+    #sort odd numbers and then place them in result at empty indices
+    odds=sorted(odds)
+    for i in range(0, len(odds)):
+        result[ind[i]]=odds[i]
+    
+    return result
